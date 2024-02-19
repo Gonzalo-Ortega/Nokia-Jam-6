@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://chcopw70xb11x"]
+
+[ext_resource type="AudioStream" uid="uid://b4lixadniq5co" path="res://assets/sounds/nokia_3310_sounds/nokia_soundpack_@trix/bad_melody.wav" id="1_7mb1p"]
+[ext_resource type="PackedScene" uid="uid://5udo2ndf0wju" path="res://scenes/NokiaStartup.tscn" id="1_uhx46"]
+[ext_resource type="FontFile" uid="uid://cllobjx2d3whc" path="res://assets/fonts/nokia_3310_fonts_2024/tiny_@matthewwelch/tiny.ttf" id="2_sgpji"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_80hkr"]
+line_spacing = 4.0
+font = ExtResource("2_sgpji")
+font_size = 6
+font_color = Color(0.262745, 0.321569, 0.239216, 1)
+
+[node name="Game" type="Node"]
+
+[node name="BadMelody" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_7mb1p")
+autoplay = true
+
+[node name="NokiaStartup" parent="." instance=ExtResource("1_uhx46")]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 84.0
+offset_bottom = 48.0
+color = Color(0.780392, 0.941176, 0.847059, 1)
+
+[node name="TestLabel" type="Label" parent="."]
+offset_right = 84.0
+offset_bottom = 48.0
+text = "Hello Nokia!"
+label_settings = SubResource("LabelSettings_80hkr")
+horizontal_alignment = 1
+vertical_alignment = 1

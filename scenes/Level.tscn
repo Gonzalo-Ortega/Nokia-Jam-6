@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds8myo14sgt1"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_cneny"]
+[ext_resource type="AudioStream" uid="uid://qb2rj0m120e7" path="res://assets/sounds/nokia_3310_sounds/nokia_soundpack_@trix/blip10.wav" id="2_4ny13"]
+[ext_resource type="AudioStream" uid="uid://5chpqyavjnd2" path="res://assets/sounds/nokia_3310_sounds/nokia_soundpack_@trix/C5.wav" id="3_hbh5j"]
+[ext_resource type="PackedScene" uid="uid://c358sg1f7fdcl" path="res://scenes/Square.tscn" id="4_f3rv6"]
+[ext_resource type="PackedScene" uid="uid://by84johv22h8u" path="res://scenes/Bar.tscn" id="5_g2dld"]
+
+[node name="Level" type="Node"]
+script = ExtResource("1_cneny")
+
+[node name="TempoBeat" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_4ny13")
+
+[node name="FailSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_hbh5j")
+
+[node name="Tempo" type="Timer" parent="."]
+
+[node name="Square" parent="." instance=ExtResource("4_f3rv6")]
+
+[node name="Bar" parent="." instance=ExtResource("5_g2dld")]
+
+[connection signal="timeout" from="Tempo" to="." method="_on_tempo_timeout"]

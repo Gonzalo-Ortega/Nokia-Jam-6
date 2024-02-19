@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://chcopw70xb11x"]
+[gd_scene load_steps=6 format=3 uid="uid://chcopw70xb11x"]
 
 [ext_resource type="AudioStream" uid="uid://b4lixadniq5co" path="res://assets/sounds/nokia_3310_sounds/nokia_soundpack_@trix/bad_melody.wav" id="1_7mb1p"]
 [ext_resource type="PackedScene" uid="uid://5udo2ndf0wju" path="res://scenes/NokiaStartup.tscn" id="1_uhx46"]
 [ext_resource type="FontFile" uid="uid://cllobjx2d3whc" path="res://assets/fonts/nokia_3310_fonts_2024/tiny_@matthewwelch/tiny.ttf" id="2_sgpji"]
+[ext_resource type="PackedScene" uid="uid://ds8myo14sgt1" path="res://scenes/Level.tscn" id="4_wud0v"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_80hkr"]
 line_spacing = 4.0
@@ -14,7 +15,6 @@ font_color = Color(0.262745, 0.321569, 0.239216, 1)
 
 [node name="BadMelody" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("1_7mb1p")
-autoplay = true
 
 [node name="NokiaStartup" parent="." instance=ExtResource("1_uhx46")]
 
@@ -30,3 +30,5 @@ text = "Hello Nokia!"
 label_settings = SubResource("LabelSettings_80hkr")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Level" parent="." instance=ExtResource("4_wud0v")]

@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c358sg1f7fdcl"]
+[gd_scene load_steps=5 format=3 uid="uid://c358sg1f7fdcl"]
 
-[ext_resource type="Texture2D" uid="uid://dg1ytijgkc8rr" path="res://assets/sprites/bar.png" id="1_uynbf"]
+[ext_resource type="Script" path="res://scripts/note.gd" id="1_tbhyb"]
+[ext_resource type="Texture2D" uid="uid://dg1ytijgkc8rr" path="res://assets/sprites/bar.png" id="2_s52xd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tl27w"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_uynbf")
+"texture": ExtResource("2_s52xd")
 }],
 "loop": true,
 "name": &"default",
@@ -16,7 +17,8 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n4shs"]
 size = Vector2(2.9375, 3)
 
-[node name="Square" type="StaticBody2D"]
+[node name="Note" type="StaticBody2D"]
+script = ExtResource("1_tbhyb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3.8147e-06, 0)

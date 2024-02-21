@@ -18,12 +18,8 @@ stream = ExtResource("1_7mb1p")
 
 [node name="NokiaStartup" parent="." instance=ExtResource("1_uhx46")]
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 84.0
-offset_bottom = 48.0
-color = Color(0.780392, 0.941176, 0.847059, 1)
-
 [node name="TestLabel" type="Label" parent="."]
+visible = false
 offset_right = 84.0
 offset_bottom = 48.0
 text = "Hello Nokia!"

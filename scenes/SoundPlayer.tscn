@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg1xhqmth8x5n"]
+
+[ext_resource type="Script" path="res://scripts/sound_player.gd" id="1_tv0xm"]
+
+[node name="SoundPlayer" type="Node"]
+script = ExtResource("1_tv0xm")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

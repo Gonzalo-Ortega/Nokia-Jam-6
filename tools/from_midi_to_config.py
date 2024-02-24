@@ -3,7 +3,7 @@
 import argparse
 import os
 import sys
-import yaml
+import json
 import mido
 
 #### SCRIPT TO CONVERT MIDI FILES TO CONFIG FILES ####
@@ -11,7 +11,7 @@ import mido
 # As imput, this script takes a MIDI file and a configuration file. 
 # The MIDI file is converted to a list of tracks with their respective notes and durations.
 
-# The output is a configuration yaml file with the following structure:
+# The output is a configuration json file with the following structure:
 # - tracks:
 #   - name: track_name
 #     notes:
@@ -34,19 +34,21 @@ def midi_to_config(midi_file, config_file):
     for i, track in enumerate(mid.tracks):
         processed_track = []
         notes_status = {}
-
+        global_time = 0
         # Iterate over the MIDI file messages
         for msg in track:
+
         # if msg does not have a time attribute, it is a meta message
             if not hasattr(msg, 'time'):
                 continue
+            global_time += msg.time
             if msg.type == 'note_on':
-                notes_status[msg.note] = msg.time
+                notes_status[msg.note] = global_time
             elif msg.type == 'note_off' and msg.note in notes_status:
                 processed_track.append([
                     msg.note,
                     notes_status[msg.note],
-                    msg.time-notes_status[msg.note]
+                    msg.time
                 ])
                 del notes_status[msg.note]
         processed_tracks.append(
@@ -57,7 +59,7 @@ def midi_to_config(midi_file, config_file):
         )
     # Write the processed tracks to a configuration file
     with open(config_file, 'w') as f:
-        yaml.dump(processed_tracks, f)
+        json.dump(processed_tracks, f, indent=4)
 
 # Parse the input arguments
 def parse_args():

@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "Forward Plus")
 run/max_fps=15
 config/icon="res://icon.svg"
 
+[dotnet]
+
+project/assembly_name="nokia6jam"
+
 [gui]
 
 fonts/dynamic_fonts/use_oversampling=false

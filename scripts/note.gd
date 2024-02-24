@@ -1,7 +1,7 @@
 extends StaticBody2D
 
 var time = 0
-var speed = 4
+var delay = 1
 var tone = 1
 var direction = 1
 
@@ -12,30 +12,26 @@ var rng = RandomNumberGenerator.new()
 func  _ready():
 	viewport_rect = get_viewport_rect()
 	position = viewport_rect.get_center()
-	direction = randi_range (1, 4)
+
+# Get delta vector from speed and dir
+func get_delta_vector():
+	var delta = Vector2()
+	if direction == 1:
+		delta = Vector2(1, 0)
+	if direction == 2:
+		delta = Vector2(0, 1)
+	if direction == 3:
+		delta = Vector2(-1, 0)
+	if direction == 4:
+		delta = Vector2(0, -1)
+	return delta * (18.0/delay)
 
 
-func configure(time, speed, tone):
-	self.time = time
-	self.speed = speed
-	self.tone = tone
+# Move exactly 10u in delay seconds
+func _process(delta):
+	position += get_delta_vector()*delta
 
+func _on_timer_timeout():
 
-func _on_tempo_timeout():
-	match direction:
-		1: position.x -= speed
-		2: position.x += speed
-		3: position.y -= speed
-		4: position.y += speed
-	
-	if is_out_of_screen():
-		#queue_free()
-		pass
-
-
-func is_out_of_screen() -> bool:
-	
-	return position.x < viewport_rect.size.x - 10 || \
-		   position.x > viewport_rect.size.x + 10 || \
-		   position.y < viewport_rect.size.y - 10 || \
-		   position.y > viewport_rect.size.y + 10
+	# Remove this object from the scene
+	queue_free()

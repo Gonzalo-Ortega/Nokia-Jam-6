@@ -27,4 +27,7 @@ position = Vector2(41, 23)
 
 [node name="SoundPlayer" parent="." instance=ExtResource("5_csd60")]
 
+[node name="SpawnerTempo" type="Timer" parent="."]
+
 [connection signal="timeout" from="Tempo" to="." method="_on_tempo_timeout"]
+[connection signal="timeout" from="SpawnerTempo" to="." method="_on_spawner_tempo_timeout"]

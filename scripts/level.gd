@@ -30,8 +30,11 @@ func _ready():
 	read_midi()
 
 
-	$Tempo.wait_time = 0
+	$Tempo.wait_time = 2
 	$Tempo.start()
+	
+	$SpawnerTempo.wait_time = 0
+	$SpawnerTempo.start()
 
 var index = 0
 func _on_tempo_timeout():
@@ -52,9 +55,28 @@ func _on_tempo_timeout():
 		$Tempo.start()
 	else:
 		$Tempo.stop()
-
-	var note_entity = Note.instantiate()
-	note_entity.direction = int((int(note[0]) - 45)*4.0/33)+1
-	print(note_entity.direction)
-	add_child(note_entity)
 	
+
+var notes_index = 0
+func _on_spawner_tempo_timeout():
+
+	# Get the first note in the list
+	var note = notes[notes_index]
+
+	# Spawn the note
+	var note_entity = Note.instantiate()
+	note_entity.direction = int((int(note[0]) - 40)*4.0/33)+1
+	add_child(note_entity)
+
+	# Increment the index
+	notes_index += 1
+
+	# If there are more notes, schedule the next one
+	if notes_index < len(notes):
+		var next_note = notes[notes_index]
+		$SpawnerTempo.wait_time = (int(next_note[1]) - int(note[1]))*tempo_time
+		$SpawnerTempo.start()
+	else:
+		$SpawnerTempo.stop()
+
+
